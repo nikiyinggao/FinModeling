@@ -3,7 +3,7 @@ install.packages("openxlsx")
 library(openxlsx)
 
 # Path, file, sheet names
-Excel_file_path <- "//ncccnsf701z1.wellsfargo.net/C_WBGWCM_Users/A323898/My Documents/Steve Young/"
+Excel_file_path <- "/Users/niki/Desktop/Modeling&Eng/11_July_2018/"
 Excel_file_name <- "Black_Scholes.xlsx"
 Excel_full_file_name <- paste(Excel_file_path,Excel_file_name,sep="")
 Excel_data_sheet_name <- "Output Data"
