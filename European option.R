@@ -1,5 +1,3 @@
-# Option Pricing Example
-
 # Include package to connect to Excel
 install.packages("openxlsx")
 library(openxlsx)
