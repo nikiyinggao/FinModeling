@@ -65,7 +65,7 @@ EuropeanPutBE <- function (S ,X,r,sigma,tau,M)
   return (cbind(M, P0, P0_A))
 }
 
-
+#request nstep= 10,20,50,100,200,500,1,000.
 N10 <- EuropeanPutBE(100,100,0.05,0.2,1,10)
 N20 <- EuropeanPutBE(100,100,0.05,0.2,1,20)
 N50 <- EuropeanPutBE(100,100,0.05,0.2,1,50)
