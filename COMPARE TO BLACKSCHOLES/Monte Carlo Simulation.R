@@ -25,6 +25,7 @@ return(cbind(N,C0,C0_A))
 }
 
 # Calls to function with increasing N values
+# Request 𝑛𝑠𝑖𝑚𝑢𝑙𝑎𝑡𝑖𝑜𝑛𝑠=100,1,000,5,000,10,000,20,000,50,000.
 N100 <- MCS_Call(100,100,0.05,0.2,1,100)
 N1000 <- MCS_Call(100,100,0.05,0.2,1,1000)
 N5000 <- MCS_Call(100,100,0.05,0.2,1,5000)
@@ -68,6 +69,7 @@ MCS_Put <- function(S,K,r,sigma,T,N){
 }
 
 # Calls to function with increasing N values
+# Request 𝑛𝑠𝑖𝑚𝑢𝑙𝑎𝑡𝑖𝑜𝑛𝑠=100,1,000,5,000,10,000,20,000,50,000.
 N100 <- MCS_Call(100,100,0.05,0.2,1,100)
 N1000 <- MCS_Call(100,100,0.05,0.2,1,1000)
 N5000 <- MCS_Call(100,100,0.05,0.2,1,5000)
@@ -84,4 +86,3 @@ plot(MCS_Put_data[,1], MCS_Put_data[,2], type="o", col="blue", pch="o", lty=1, l
      xlab="N (# of Steps)",ylab="Option Value")
 points(MCS_Put_data[,1], MCS_Put_data[,3], col="red", pch="*")
 lines(MCS_Put_data[,1], MCS_Put_data[,3], col="red",lty=2, lwd=2)
-
