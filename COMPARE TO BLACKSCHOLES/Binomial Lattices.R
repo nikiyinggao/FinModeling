@@ -22,18 +22,17 @@ EuropeanCallBE <- function (S,X,r,sigma,tau,M)
     return (cbind(M, C0, C0_A))
 }
 
-# Calls to function with increasing N values
-N10 <- EuropeanCallBE(100,100,0.05,0.2,1,10)
-N20 <- EuropeanCallBE(100,100,0.05,0.2,1,20)
-N50 <- EuropeanCallBE(100,100,0.05,0.2,1,50)
-N100 <- EuropeanCallBE(100,100,0.05,0.2,1,100)
-N200 <- EuropeanCallBE(100,100,0.05,0.2,1,200)
-N500 <- EuropeanCallBE(100,100,0.05,0.2,1,500)
-N1000 <- EuropeanCallBE(100,100,0.05,0.2,1,1000)
+nsteps <- rbind(10,20,50,100,150,200,500,1000)
 
-EuropeanCallBE_data <- rbind(N10,N20,N50,N100,N200,N500,N1000)
-EuropeanCallBE_data
-EuropeanCallBE_data[,1]
+results <- matrix(nrow=length(nsteps),ncol=3)
+
+for(i in 1:length(nsteps)){
+  
+  results[i,] <- binomial_tree_EOPT(100,100,0.05,1,0.2,nsteps[i],callput="call",return_tree=FALSE) 
+
+}
+
+results
 
 plot(EuropeanCallBE_data[,1], EuropeanCallBE_data[,2], type="o", col="blue", pch="o", lty=1, lwd=2,
      main="Binomial lattice for European Call versus Black-Scholes for Increasing N",
