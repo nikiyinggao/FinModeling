@@ -1,4 +1,25 @@
+# Install packages
+install.packages("quantmod")
+install.packages("tseries")
+install.packages("xts")
+install.packages("stats")
+install.packages("rugarch")
+install.packages("e1071")
+install.packages("MASS")
+install.packages("zoo")
+install.packages("roll")
+install.packages("car")
 
+library(quantmod)
+library(tseries)
+library(xts)
+library(stats)
+library(rugarch)
+library(e1071)
+library(MASS)
+library(zoo)
+library(roll)
+library(car)
 
 path <- "/Users/niki/Desktop/Modeling&Eng/GARCH_MODEL/Data.csv"
 data.file <- read.csv(path,header=TRUE)
