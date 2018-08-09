@@ -2,7 +2,8 @@
 install.packages("quadprog")
 library(quadprog)
 
-#copy the expected return vector and the covariance matrixto the clipboard
+#copy the expected return vector and the covariance matrix to the clipboard
+#using pipe("pbpaste") on macOS or "clipboard" on WINDOWS
 read.excel.mu <- function(header=FALSE,...) {
   read.table(pipe("pbpaste"),sep="\t")
 }
@@ -41,7 +42,8 @@ V
   tmp <- matrix(0,nrow=n_assets,ncol=n_assets)
   diag(tmp) <- 1
  
-  #the problem is: min(-d'b + 1/2*b'Db), s.t. A'b>=b0
+  #Set A matrix with short selling constrints in the last column
+  # min(-d'b + 1/2*b'Db), s.t. A'b>=b0
   A <- cbind(rep(1,n_assets),mu_vector,tmp)
 
   #Create Dataset
