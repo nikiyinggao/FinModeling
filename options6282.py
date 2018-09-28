@@ -1,11 +1,4 @@
 
-# coding: utf-8
-
-# # European Option
-
-# In[49]:
-
-
 import math
 class an_option:
     def __init__(self,T,K,putcall):
@@ -23,7 +16,7 @@ class a_node:
     def __init__(self,t,i,thetree):
         self.t=t
         self.i=i
-        self.mytree=thetree#连接前后时间段的不同nodes
+        self.mytree=thetree  #连接前后时间段的不同nodes
     def grow(self):
         u=self.mytree.u
         d=self.mytree.d
@@ -92,7 +85,7 @@ class a_tree:
         return(self.periods[0].nodes[0].value)
 #The lines above describe the framework that we will need to fill in.
 
-
+#Define option strategy --- straddle and strangle
 class a_position:
     def __init__(self,what=None,howmuch=0):
         self.instrument=what   
@@ -110,18 +103,19 @@ class a_strategy:
         thesum = 0
         for apos in self.positions:
             thesum = thesum + apos.n * tree.price(apos.instrument,self.und,S0,env)
+            # number of position * price for each position 
         return(thesum)
         self.price = thesum
             
 class stra(a_strategy):
     def setpositions(self):
-        self.npos = 2 
-        self.positions =                  [a_position(an_option(self.T,None,'call',self.geo),1)]
+        self.npos = 2         # 2 position: put and call
+        self.positions =                  [a_position(an_option(self.T,None,'call',self.geo),1)]   #None: strike price
         self.positions = self.positions + [a_position(an_option(self.T,None,'put',self.geo),1)]
 
 class a_straddle(stra):
     def strikes (self,strikelist):
-        self.positions[0].instrument.K = strikelist[0]
+        self.positions[0].instrument.K = strikelist[0]  #[0] first position, [1] second
         self.positions[1].instrument.K = strikelist[0]
         
 class a_strangle(stra):
@@ -130,3 +124,10 @@ class a_strangle(stra):
         self.positions[1].instrument.K = strikelist[1]
     
 
+#input value
+straddle1 = straddle(1.5,u1,[10]) 
+straddle1.price(t1,11,e1)
+strangle1 = strangle(1.5,u1,[10,15])
+strangle1.price(t1,11,e1)
+strangle1 = a_strangle(1.5,u1,[10,15])
+strangle1.price(t1,11,e1)
